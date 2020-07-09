@@ -1,41 +1,51 @@
-const express = require ("express");
+const express = require("express");
 const app = express();
 const path = require("path");
 const PORT = process.env.PORT || 3000;
+let data = true
 
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
 
-app.get ("/", (req,res)=>{
+app.get("/", (req, res) => {
     res.sendStatus("Working");
 })
 
-app.get("/Make", function(req,res){
-    res.sendFile(path.join(__dirname, "/Make.html"));
+app.get("/make", function (req, res) {
+    res.sendFile(path.join(__dirname, "/make.html"));
 })
 
-app.get("/View", function(req,rest){
-    res.sendFile(path.join(__dirname, "/View.html"))
+app.get("/view", function (req, res) {
+    res.sendFile(path.join(__dirname, "/view.html"))
 })
 
 var reservation = [];
 
 var waitList = [];
 
-app.post("/api/Make", function(req,res){
+app.post("/api/make", function (req, res) {
     var newReservation = req.body;
 
     newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
     console.log(newReservation);
-    reservation.push(newReservation);
+
+    if (reservation.length < 5) {
+        reservation.push(newReservation);
+    }
+    else { 
+        waitList.push(newReservation)
+    }
+
     res.json(newReservation);
 });
 
-app.listen(PORT, function(){
-    console.log("listening on Port: " +PORT)
+app.listen(PORT, function () {
+    console.log("listening on Port: " + PORT)
 })
+
+
 
 
 //ALL IN TERMINAL

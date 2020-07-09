@@ -9,7 +9,7 @@ $(".submit").on("click", function () {
     console.log(newReservation);
 
     var currentURL = window.location.origin;
-    $.post(currentURL + "/api/View", newReservation,
+    $.post(currentURL + "/api/view", newReservation,
         function (data) {
             if (data === true) {
                 alert("You're booked!")
