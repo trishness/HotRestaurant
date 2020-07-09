@@ -10,19 +10,19 @@ function runTableQuery(){
                 var tableSection = $("<div>");
                 tableSection.addClass("well");
                 tableSection.attr("id", "tableWell-" + i+1)
-                // $("#tableSection").append(tableSection);
+                $("#tableSection").append(tableSection);
 
                 var tableNumber = i+1;
 
                 $("#tableWell-" + i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + tableData[i].customerID + "</h2>")
                 
-                if (i<=4){
-                data=false;
-                $("#tableSection").append(tableSection);
-                }
-                else {
-                    runWaitListQuery();
-                }
+                // if (i<=4){
+                // data=false;
+                // $("#tableSection").append(tableSection);
+                // }
+                // else {
+                //     runWaitListQuery();
+                // }
             }
         });
 }
