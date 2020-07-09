@@ -20,6 +20,19 @@ app.get("/View", function(req,rest){
     res.sendFile(path.join(__dirname, "/View.html"))
 })
 
+var reservation = [];
+
+var waitList = [];
+
+app.post("/api/Make", function(req,res){
+    var newReservation = req.body;
+
+    newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+    console.log(newReservation);
+    reservation.push(newReservation);
+    res.json(newReservation);
+});
+
 app.listen(PORT, function(){
     console.log("listening on Port: " +PORT)
 })
